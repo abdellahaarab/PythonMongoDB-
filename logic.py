@@ -39,11 +39,7 @@ class GST():
     def Sauvgarder(self,nom) -> str:
         res = self.db.rout.find({"nom":nom},{})
         for X in res[:]:
-            return f"""
-                  Nome : {X['nom']} 
-                  Distance : {int(X['dist'])}
-                  Vile D : {X['viled']} 
-                  Vile A : {X['vileA']}""" 
+            return f"Nome : {X['nom']}\nDistance : {int(X['dist'])}\nVile D : {X['viled']}\nVile A : {X['vileA']}" 
 
     def sof(self,nom):
         with open(f"{nom}.txt", 'w') as f:
