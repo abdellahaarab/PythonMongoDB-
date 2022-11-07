@@ -1,0 +1,2 @@
+mongoexport -d TP1 -c Ordinateur -o C:\Users\PC5\Desktop\db1\dbx.json
+mongoimport --host localhost:27017 --db TP2 --collection users --file C:\Users\PC5\Desktop\db1\dbx.json
