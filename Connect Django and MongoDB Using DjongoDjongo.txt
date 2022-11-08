@@ -1,0 +1,26 @@
+Connect Django and MongoDB Using Djongo
+Djongo is an improvement over PyMongo in that developers need not write lengthy queries. It maps Python objects to MongoDB documents, i.e., Object Document Mapping (ODM). Djongo ensures that only clean data enters the database. By performing integrity checks, applying validations, etc. with Djongo, there is no need to modify the existing Django ORM.
+
+Install Djongo:
+
+pip install djongo
+Now, go to your project folder (example, MyFirstDjangoProj), and open settings.py file. You can edit it on Textpad, Python IDE, or any editor. Search for DATABASES, and change the settings to point to MongoDB. The ENGINE will be djongo and the database name (NAME) will be your MongoDB database name.
+
+DATABASES = {
+       'default': {
+           'ENGINE': 'djongo',
+           'NAME': 'db-name',
+       }
+   }
+If your database is not on localhost or is secured, you should also fill in the CLIENT information like HOST, USERNAME, PASSWORD, etc.
+
+DATABASES = {
+        'default': {
+            'ENGINE': 'djongo',
+            'NAME': 'your-db-name',
+            'ENFORCE_SCHEMA': False,
+            'CLIENT': {
+                'host': 'mongodb+srv://<username>:<password>@<atlas cluster>/<myFirstDatabase>?retryWrites=true&w=majority'
+            }  
+        }
+}
