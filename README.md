@@ -1,81 +1,104 @@
+# 🚀 Connect Python and MongoDB — Professional Guide
 
-# Connect Python and MongoDB 
+## 📌 Introduction
 
+This documentation provides a clean and professional overview of how to connect **Python** and **MongoDB**, including:
 
-## About Python 
-<p>
-Python, the top programming language for data science, has always been a great match with MongoDB for building powerful applications.
-</p>
+* PyMongo (direct driver)
+* MongoEngine (ORM for MongoDB)
+* Example code
+* GeoJSON sample
 
-<div>
-<img src="asset/python.png" alert="Python MongoDB">
+---
+
+## 🐍 About Python
+
+Python, one of the most popular languages for **data science**, AI, automation, and backend development, integrates naturally with MongoDB to build powerful and scalable applications.
+
+<div align="center">
+  <img src="asset/python.png" alt="Python MongoDB" width="220">
 </div>
 
-## About MongoDB
-<p>
-MongoDB is a flexible, schema-less, JSON-style, document-based database. Here's a side-by-side comparison showing the insertion of a medicine into a pharmacy database in SQL and MongoDB:
-</p>
+---
 
-<div>
-<img src="asset/img.jpg" alert="SQL and MongoDB">
+## 🍃 About MongoDB
+
+MongoDB is a **NoSQL**, document-oriented, schema-less database using a flexible **JSON-like format**.
+
+Here is a visual comparison between inserting a medicine record in SQL vs MongoDB:
+
+<div align="center">
+  <img src="asset/img.jpg" alt="SQL vs MongoDB" width="450">
 </div>
 
-## Connect Python and MongoDB Using PyMongo
+---
 
+## 🔌 Connect Python and MongoDB Using PyMongo
 
-<p>
-PyMongo is very efficient for writing JSON data to MongoDB and allows the use of MongoDB queries in the Python code itself. We can retrieve data in a dictionary like syntax using PyMongo.
-</p>
+### 📦 Installation
 
-<i>
-Install PyMongo easily using the pip/pip3 command:
-</i>
-<p>
-<code>
-pip install pymongo 
-</code>
-</p>
+```bash
+pip install pymongo
+```
 
+### 🧩 Why PyMongo?
 
-<p>
-Using PyMongo, we can concurrently run multiple databases by specifying the right database name to the connection instance.
-</p>
+* Simple and powerful driver to communicate with MongoDB
+* Supports JSON-like documents
+* Allows dictionary-style data access
+* Fast and flexible
 
-<code>
-from pymongo import MongoClient <br>
-client = pymongo.MongoClient('connection_string')
-db = client['db_name']
-</code>
+### ✔ Example Connection
 
+```python
+from pymongo import MongoClient
 
-## Connect Django and MongoDB Using MongoEngine
-<p>
-MongoEngine is an ORM layer on top of PyMongo. So, you still need PyMongo (>=3.4) on your system to use MongoEngine.
-</p>
+client = MongoClient("mongodb://localhost:27017/")
+db = client["db_name"]
 
-<p>
-Using MongoEngine to connect Django and MongoDB gives you fields like ListField and DictField to handle huge unstructured JSON data.
-</p>
+# Example insert
+db.users.insert_one({"name": "John", "age": 30})
+```
 
-<i>
-First, install MongoEngine using:
-</i>
-<code>
+---
+
+## 🏗 Connect Django and MongoDB Using MongoEngine
+
+`MongoEngine` is an ORM layer on top of PyMongo.
+
+### 📦 Installation
+
+```bash
 pip install mongoengine
-</code>
-<p>
-As we have seen in the previous section, while using PyMongo, we have to comment the DATABASES section in settings.py. Then, to use MongoEngine, add the following:
-</p>
+```
 
-<code>
-import mongoengine <br>
-mongoengine.connect(db=db_name, host=hostname, username=username, password=pwd)
-</code>
-<p>
-With MongoEngine, we have to define a schema in the models.py file of the Python application. MongoDB is schemaless. The schema is enforced only until application level, making any future changes fast and easy.
-</p>
+### 🛠 Django Integration
 
-<p></p>
+In `settings.py`, remove or comment the default `DATABASES` section, then:
+
+```python
+import mongoengine
+
+mongoengine.connect(
+    db="db_name",
+    host="hostname",
+    username="username",
+    password="mypassword"
+)
+```
+
+### 🎯 Why Use MongoEngine?
+
+* Provides familiar ORM-style models
+* Supports fields like `ListField`, `DictField`
+* Schema is enforced at application level (MongoDB stays schemaless)
+* Very useful for working with unstructured or large JSON data
+
+---
+
+## 🌍 GeoJSON Example
+
+MongoDB natively supports **GeoJSON** objects for geospatial queries.
 
 ```geojson
 {
@@ -84,18 +107,16 @@ With MongoEngine, we have to define a schema in the models.py file of the Python
     {
       "type": "Feature",
       "id": 1,
-      "properties": {
-        "ID": 0
-      },
+      "properties": { "ID": 0 },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
           [
-              [-90,35],
-              [-90,30],
-              [-85,30],
-              [-85,35],
-              [-90,35]
+            [-90, 35],
+            [-90, 30],
+            [-85, 30],
+            [-85, 35],
+            [-90, 35]
           ]
         ]
       }
@@ -104,3 +125,15 @@ With MongoEngine, we have to define a schema in the models.py file of the Python
 }
 ```
 
+---
+
+## ✅ Conclusion
+
+You now have:
+
+✔ A clean explanation of Python and MongoDB
+✔ PyMongo connection example
+✔ Django + MongoEngine integration
+✔ GeoJSON sample for geospatial operations
+
+---
